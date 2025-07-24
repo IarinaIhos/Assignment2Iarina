@@ -1,10 +1,7 @@
-require_relative '../BankingApp/account'
-require_relative '../Repositories/userRepository'
+require_relative '../models/account'
+require_relative '../repositories/user_repository'
 
 class UserController
-  def initialize(repository = UserRepository.new)
-    @repository = repository
-  end
 
   def create_account(params)
     name = params[:name]
@@ -12,14 +9,14 @@ class UserController
     email = params[:email]
     address = params[:address]
 
-    return { success: false, error: 'Name cannot be empty' } if name.strip.empty?
-    return { success: false, error: 'Job title cannot be empty' } if job.strip.empty?
-    return { success: false, error: 'Email is invalid' } unless valid_email?(email)
-    return { success: false, error: 'Address cannot be empty' } if address.strip.empty?
-
     id = generate_account_id
     account = Account.new(id: id, name: name, job: job, email: email, address: address)
-    @repository.create_account(account)
+
+    unless account.valid?
+      return { success: false, error: account.errors.first }
+    end
+
+    UserRepository.create_account(account)
     { success: true, account: account }
   end
 
@@ -30,7 +27,7 @@ class UserController
     email = params[:email]
     address = params[:address]
 
-    account = @repository.find_account_by_id(id)
+    account = UserRepository.find_account_by_id(id)
     return { success: false, error: 'Account not found' } unless account
 
     name = name.nil? || name.strip.empty? ? account.name : name
@@ -38,18 +35,21 @@ class UserController
     email = email.nil? || email.strip.empty? ? account.email : email
     address = address.nil? || address.strip.empty? ? account.address : address
 
-    return { success: false, error: 'Email is invalid' } unless email.nil? || valid_email?(email)
+    temp_account = Account.new(id: id, name: name, job: job, email: email, address: address)
+    unless temp_account.valid?
+      return { success: false, error: temp_account.errors.first }
+    end
 
     account.name = name if name
     account.job = job if job
     account.email = email if email
     account.address = address if address
 
-    { success: @repository.update_account(account), account: account }
+    { success: UserRepository.update_account(account), account: account }
   end
 
   def delete_account(id)
-    success = @repository.delete_account(id)
+    success = UserRepository.delete_account(id)
     if success
       { success: true, message: 'Account deleted successfully' }
     else
@@ -57,14 +57,20 @@ class UserController
     end
   end
 
-  def valid_email?(email)
-    /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.match?(email)
-  end
-
   def generate_account_id
     loop do
       id = "ACC#{rand(100..999)}"
-      return id unless @repository.find_account_by_id(id)
+      return id unless UserRepository.find_account_by_id(id)
     end
   end
+
+  def check_balance(id)
+    account = UserRepository.find_account_by_id(id)
+    if account
+      { success: true, account: account }
+    else
+      { success: false, error: 'Account not found' }
+    end
+  end
+
 end

@@ -16,4 +16,10 @@ class UserView
     puts "Balance: $#{'%.2f' % account.balance}"
     puts "Transactions: #{account.transactions.join(', ')}"
   end
+
+  def prompt_for_field(field)
+    print "Enter new #{field} (leave blank to keep current): "
+    input = gets.chomp
+    input.empty? ? nil : input
+  end
 end
