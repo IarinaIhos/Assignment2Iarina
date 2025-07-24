@@ -1,0 +1,71 @@
+{
+  "accounts": [
+    {
+      "id": "ACC824",
+      "name": "Iari",
+      "job": "Dev",
+      "email": "iari@gmail.com",
+      "address": "doro 9",
+      "balance": 4580.0,
+      "transactions": [
+        "Deposit: $200.00}",
+        "Deposit: $200.00}",
+        "Deposit: $100.00}",
+        "Deposit: $20.00}",
+        "Deposit: $20.00}",
+        "Deposit: $20.00}",
+        "Deposit: $10.00}",
+        "Withdrawal: $10.00}",
+        "Deposit: $1000.00}",
+        "Deposit: $20.00}",
+        "Deposit: $1000.00 at 2025-07-24 16:22:00",
+        "Deposit: $1000.00 at 2025-07-24 17:20:39",
+        "Deposit: $6000.00 at 2025-07-24 17:24:16",
+        "Transfer out: $5000.00 to ACC256 at 2025-07-24 17:27:38"
+      ]
+    },
+    {
+      "id": "ACC647",
+      "name": "Laura",
+      "job": "Accountant",
+      "email": "laura@gmail.com",
+      "address": "Libertatii 5",
+      "balance": 940.0,
+      "transactions": [
+        "Deposit: $500.00 at 2025-07-24 15:04:01",
+        "Withdrawal: $200.00 at 2025-07-24 15:06:54",
+        "Withdrawal: $200.00 at 2025-07-24 15:07:54",
+        "Deposit: $400.00 at 2025-07-24 15:08:27",
+        "Deposit: $300.00}",
+        "Withdrawal: $100.00}",
+        "Withdrawal: $200.00}",
+        "Withdrawal: $200.00}",
+        "Withdrawal: $100.00}",
+        "Withdrawal: $20.00}",
+        "Withdrawal: $20.00}",
+        "Withdrawal: $20.00}",
+        "Withdrawal: $10.00}",
+        "Deposit: $1000.00}",
+        "Withdrawal: $200.00}",
+        "Deposit: $10.00}"
+      ]
+    },
+    {
+      "id": "ACC256",
+      "name": "Rares",
+      "job": "Holoangar",
+      "email": "rares@mail.com",
+      "address": "Cetatii 4",
+      "balance": 8380.0,
+      "transactions": [
+        "Deposit: $10000.00}",
+        "Withdrawal: $4500.00}",
+        "Withdrawal: $1000.00}",
+        "Withdrawal: $1000.00}",
+        "Withdrawal: $20.00}",
+        "Withdrawal: $100.00 at 2025-07-24 16:45:17",
+        "Transfer in: $5000.00 from ACC824 at 2025-07-24 17:27:38"
+      ]
+    }
+  ]
+}
