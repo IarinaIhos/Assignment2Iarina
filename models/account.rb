@@ -66,7 +66,7 @@ class Account
 
   def daily_withdrawal_total(date)
     @transactions.sum do |transaction|
-      if transaction.match(/^(?:Transfer out|Withdrawal): \$([\d.]+).* at #{date}/)
+      if transaction.match(/^(?:Withdrawal): \$([\d.]+).* at #{date}/)
         Regexp.last_match(1).to_f
       else
         0.0
